@@ -51,6 +51,8 @@
 @property (nonatomic) UIColor *yGridLinesColor;
 @property (nonatomic) BOOL thousandsSeparator;
 
+@property (nonatomic) CGFloat xSeparatorBegainSpace;//First x axis separator position
+
 @property (nonatomic) CGFloat chartMarginLeft;
 @property (nonatomic) CGFloat chartMarginRight;
 @property (nonatomic) CGFloat chartMarginTop;

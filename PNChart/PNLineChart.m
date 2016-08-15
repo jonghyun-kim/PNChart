@@ -170,7 +170,7 @@
     if (_showLabel) {
         xLabelWidth = _chartCavanWidth / [xLabels count];
     } else {
-        xLabelWidth = (self.frame.size.width - _chartMarginLeft - _chartMarginRight) / [xLabels count];
+        xLabelWidth = (self.frame.size.width - _chartMarginLeft - _chartMarginRight - _xSeparatorBegainSpace) / [xLabels count];
     }
 
     return [self setXLabels:xLabels withWidth:xLabelWidth];
@@ -193,7 +193,7 @@
         for (int index = 0; index < xLabels.count; index++) {
             labelText = xLabels[index];
 
-            NSInteger x = (index * _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0);
+            NSInteger x = (index * _xLabelWidth + _chartMarginLeft + _xSeparatorBegainSpace - _xLabelWidth / 2.0);
             NSInteger y = _chartMarginBottom + _chartCavanHeight;
 
             PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, (NSInteger) _xLabelWidth, (NSInteger) _chartMarginBottom)];
@@ -392,7 +392,7 @@
                 innerGrade = (yValue - _yValueMin) / (_yValueMax - _yValueMin);
             }
 
-            int x = i * _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0;
+            int x = i * _xLabelWidth + _chartMarginLeft + _xSeparatorBegainSpace;
 
             int y = _chartCavanHeight - (innerGrade * _chartCavanHeight) + (_yLabelHeight / 2) + _chartMarginTop - _chartMarginBottom;
 
@@ -571,7 +571,7 @@
         // set the chart will be misplaced
         if (!_showLabel) {
             _chartCavanHeight = self.frame.size.height - 2 * _yLabelHeight;
-            _chartCavanWidth = self.frame.size.width;
+            _chartCavanWidth = self.frame.size.width - _xSeparatorBegainSpace;
             //_chartMargin = chartData.inflexionPointWidth;
             _xLabelWidth = (_chartCavanWidth / ([_xLabels count]));
         }
@@ -691,7 +691,7 @@
             // draw x axis separator
             CGPoint point;
             for (NSUInteger i = 0; i < [self.xLabels count]; i++) {
-                point = CGPointMake(2 * _chartMarginLeft + (i * _xLabelWidth), _chartMarginBottom + _chartCavanHeight);
+                point = CGPointMake(_xSeparatorBegainSpace + _chartMarginLeft + (i * _xLabelWidth), _chartMarginBottom + _chartCavanHeight);
                 CGContextMoveToPoint(ctx, point.x, point.y - 2);
                 CGContextAddLineToPoint(ctx, point.x, point.y);
                 CGContextStrokePath(ctx);
@@ -771,6 +771,7 @@
 
 //    _chartMargin = 40;
 
+    _xSeparatorBegainSpace = 25.0f;
     _chartMarginLeft = 25.0;
     _chartMarginRight = 25.0;
     _chartMarginTop = 25.0;
@@ -778,7 +779,7 @@
 
     _yLabelFormat = @"%1.f";
 
-    _chartCavanWidth = self.frame.size.width - _chartMarginLeft - _chartMarginRight;
+    _chartCavanWidth = self.frame.size.width - _chartMarginLeft - _chartMarginRight - _xSeparatorBegainSpace;
     _chartCavanHeight = self.frame.size.height - _chartMarginBottom - _chartMarginTop;
 
     // Coordinate Axis Default Values
