@@ -711,8 +711,8 @@
 
         // draw y unit
         if ([self.yUnit length]) {
-            CGFloat height = [PNLineChart sizeOfString:self.yUnit withWidth:30.f font:font].height;
-            CGRect drawRect = CGRectMake(_chartMarginLeft + 10 + 5, 0, 30.f, height);
+            CGFloat height = [PNLineChart sizeOfString:self.yUnit withWidth:60.0 font:font].height;
+            CGRect drawRect = CGRectMake(_chartMarginLeft + 10 + 5, 0, 60.f, height);
             [self drawTextInContext:ctx text:self.yUnit inRect:drawRect font:font];
         }
 
