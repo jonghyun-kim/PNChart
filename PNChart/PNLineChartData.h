@@ -13,6 +13,11 @@ typedef NS_ENUM(NSUInteger, PNLineChartPointStyle) {
     PNLineChartPointStyleTriangle = 4
 };
 
+typedef NS_ENUM(NSUInteger, PNLineChartLineStyle) {
+    PNLineChartLineStyleNormal = 0,
+    PNLineChartLineStyleDottedLine = 1
+};
+
 @class PNLineChartDataItem;
 
 typedef PNLineChartDataItem *(^LCLineChartDataGetter)(NSUInteger item);
@@ -32,6 +37,8 @@ typedef PNLineChartDataItem *(^LCLineChartDataGetter)(NSUInteger item);
 
 @property (nonatomic, assign) PNLineChartPointStyle inflexionPointStyle;
 @property (nonatomic) UIColor *inflexionPointColor;
+
+@property (nonatomic, assign) PNLineChartLineStyle inflexionLineStyle;
 
 /**
  * If PNLineChartPointStyle is circle, this returns the circle's diameter.

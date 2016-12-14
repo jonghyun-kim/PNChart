@@ -340,6 +340,12 @@
         if (chartData.inflexionPointStyle != PNLineChartPointStyleNone) {
             [pointLayer addAnimation:self.pathAnimation forKey:@"strokeEndAnimation"];
         }
+        
+        if (chartData.inflexionLineStyle == PNLineChartLineStyleDottedLine) {
+            float dashPattern[] = {2,6,4,2}; //make your pattern here
+            [progressline setLineDash:dashPattern count:4 phase:3];
+            [pointPath setLineDash:dashPattern count:4 phase:3];
+        }
 
         [CATransaction commit];
 
@@ -560,6 +566,11 @@
             pointLayer.lineWidth = chartData.lineWidth;
             [self.layer addSublayer:pointLayer];
             [self.chartPointArray addObject:pointLayer];
+            
+            if (chartData.inflexionLineStyle == PNLineChartLineStyleDottedLine) {
+                chartLine.lineDashPattern = [NSArray arrayWithObjects:[NSNumber numberWithInt:10],[NSNumber numberWithInt:7], nil];
+                pointLayer.lineDashPattern = [NSArray arrayWithObjects:[NSNumber numberWithInt:10],[NSNumber numberWithInt:7], nil];
+            }
         }
 
         _chartData = data;
