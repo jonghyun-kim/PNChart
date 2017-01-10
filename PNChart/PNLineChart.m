@@ -615,6 +615,12 @@
     _yValueMin = (_yFixedValueMin > -FLT_MAX) ? _yFixedValueMin : yMin;
     _yValueMax = (_yFixedValueMax > -FLT_MAX) ? _yFixedValueMax : yMax + yMax / 10.0;
 
+    if(self.fixYMax) {
+        _yValueMax = _yFixedValueMax;
+    }
+    if(self.fixYMin) {
+        _yValueMin = _yFixedValueMin;
+    }
     if (_showGenYLabels) {
         [self setYLabels];
     }
